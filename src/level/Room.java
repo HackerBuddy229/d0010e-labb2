@@ -11,7 +11,7 @@ public class Room {
 	 * South = 2
 	 * West = 3
 	 */
-	protected Room[] connections = {null, null, null, null};
+	protected Room[] connections = new Room[4];
 
 	protected final int dx;
 	protected final int dy;

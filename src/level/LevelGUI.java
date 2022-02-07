@@ -16,7 +16,13 @@ public class LevelGUI implements Observer {
 
 	private Level lv;
 	private Display d;
-	
+
+
+	/**
+	 *
+	 * @param level
+	 * @param name
+	 */
 	public LevelGUI(Level level, String name) {
 		
 		this.lv = level;

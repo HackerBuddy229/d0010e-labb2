@@ -1,6 +1,9 @@
 package lab2;
 
-public enum Direction {
+/**
+ * Directions synonymus with up, down, right, and left
+ */
+protected enum Direction {
     NORTH,
     EAST,
     SOUTH,

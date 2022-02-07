@@ -8,6 +8,9 @@ import java.awt.*;
 
 public class Driver {
 
+	/**
+	 *
+	 */
 	public void run() {
 
 
@@ -36,6 +39,10 @@ public class Driver {
 
 	}
 
+	/**
+	 *
+	 * @param rooms
+	 */
 	private static void maze(Room[] rooms) {
 		rooms[0].connectSouthTo(rooms[1]);
 		rooms[1].connectNorthTo(rooms[0]);
