@@ -1,9 +1,6 @@
 
 package lab2.level;
 
-import lab2.Direction;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -11,10 +8,14 @@ import java.util.Observable;
 
 public class Level extends Observable {
 
-	protected List<Room> rooms = new ArrayList<Room>();
+	protected List<Room> rooms = null;
 
 	protected Room firstRoom = null;
-	protected Room currentRoom;
+	protected Room currentRoom = null;
+
+	public Level() {
+		this.rooms = new ArrayList<Room>();
+	}
 
 
 	/**
@@ -37,78 +38,24 @@ public class Level extends Observable {
 	 * @return weather or not the room could be placed
 	 */
 	public boolean place(Room r, int x, int y)  {
+		//assigns coordinate props
+		r.x = x;
+		r.y = y;
 
-		//itarests the already exisiting rooms to check for overlap
-		for (Room room: this.rooms) {
-
-			//returns false if the center of the new room is within the limits of the alredy existing room
-			//if (centerContained(r, x, y, room))
-			//	return false;
-
-			//checks if any lines eminating from xy is intersecting already existing rooms
-			if (lineIntersect(r, x, y, room.x, room.y, room.y+room.dy, room.x+room.dx))
+		//iterates the existing rooms to check for overlap
+		for (Room room: this.rooms)
+			if (room.intersects(r)) //checks for intersects
 				return false;
 
-			//checks if any lines eminating from x+dx, y+dy is intersecting already existing rooms
-			if (lineIntersect(r, x+r.dx, y+r.dy, room.x, room.y, room.y+room.dy, room.x+room.dx))
-				return false;
-
-
-		}
 
 		//if the for loop exits then no overlap has been detected
 
-		//adds the coordinates to the new room
-		r.x = x;
-		r.y = y;
 
 		//adds the room to the level maze
 		rooms.add(r);
 		return true;
 	}
 
-	/**
-	 *
-	 * @param r
-	 * @param x
-	 * @param y
-	 * @param room
-	 * @return
-	 */
-	private boolean centerContained(Room r, int x, int y, Room room) {
-		int rxCenter, ryCenter;
-		rxCenter = x + (r.dx/2);
-		ryCenter = y + (r.dy/2);
-
-		if (room.x >= rxCenter && room.x + room.dx <= rxCenter) {
-			if (room.y >= ryCenter && room.y + room.dy <= ryCenter) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 *
-	 * @param r new room
-	 * @param x1 new room x
-	 * @param y1 new room y
-	 * @param x2 compared x
-	 * @param y2 compared y	(upper y)
-	 * @param y3 compared y + dy (lower y)
-	 * @param x3 compared x + dx (lower x)
-	 * @return
-	 */
-	private static boolean lineIntersect(Room r, int x1, int y1, int x2, int y2, int y3, int x3) {
-		if ( x2 <= x1 && x3 >= x1) {
-			boolean larger = (y1 > y3);
-			boolean smaller = (y1+r.dy < y2);
-			if (!(larger||smaller)){
-				return true;
-			}
-		}
-		return false;
-	}
 
 	/**
 	 * changes the current room prop in the specified direction
@@ -152,7 +99,7 @@ public class Level extends Observable {
 	 * @param r the room that is assigned
 	 */
 	public void firstLocation(Room r) {
-			if (rooms.contains(r)) {
+			if (rooms.contains(r) && this.firstRoom == null) {
 				this.firstRoom = r;
 				this.currentRoom = r;
 			}

@@ -1,10 +1,10 @@
 
 package lab2.level;
 
-import java.awt.Color;
+import java.awt.*;
 
 
-public class Room {
+public class Room extends Rectangle {
 	/**
 	 * North = 0
 	 * East = 1
@@ -13,17 +13,18 @@ public class Room {
 	 */
 	protected Room[] connections = new Room[4];
 
-	protected final int dx;
-	protected final int dy;
+	protected int dx;
+	protected int dy;
 
-	protected int x;
-	protected int y;
 
 	protected Color color;
 	
 	public Room(int dx, int dy, Color color) {
 		this.dx = dx;
 		this.dy = dy;
+
+		this.width = dx;
+		this.height = dy;
 
 		this.color = color;
 

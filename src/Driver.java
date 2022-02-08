@@ -14,25 +14,9 @@ public class Driver {
 	public void run() {
 
 
-		Room[] rooms= {
-				new Room(50, 50, Color.cyan),
-				new Room(50, 50, Color.YELLOW),
-				new Room(50, 50, Color.green),
-				new Room(50, 50, Color.pink),
-				new Room(50, 50, Color.blue)
-		};
 
-		maze(rooms);
-
-		Level lvl = new Level();
-
-		lvl.place(rooms[0], 0, 0);
-		lvl.place(rooms[1], 20, 55);
-		lvl.place(rooms[2], 0, 200);
-		lvl.place(rooms[3], 60, 0);
-		lvl.place(rooms[4], 60, 100);
-
-		lvl.firstLocation(rooms[0]);
+		Level lvl = GetLevelDemo1();
+		//Level lvl = GetLevelDemo2();
 
 		LevelGUI gui = new LevelGUI(lvl, "First!!!");
 
@@ -52,6 +36,54 @@ public class Driver {
 		rooms[3].connectNorthTo(rooms[2]);
 		rooms[3].connectSouthTo(rooms[4]);
 		rooms[4].connectNorthTo(rooms[3]);
+	}
+
+	private static Level GetLevelDemo1() {
+		Room[] rooms = {
+				new Room(125, 125, Color.cyan),
+				new Room(125, 125, Color.YELLOW),
+				new Room(125, 125, Color.green),
+				new Room(250, 250, Color.pink),
+				new Room(250, 250, Color.blue)
+		};
+
+		maze(rooms);
+
+		Level lvl = new Level();
+
+		lvl.place(rooms[0], 0, 0);
+		lvl.place(rooms[1], 360, 200);
+		lvl.place(rooms[2], 600, 200);
+		lvl.place(rooms[3], 50, 50);
+		lvl.place(rooms[4], 400, 600);
+
+		lvl.firstLocation(rooms[0]);
+
+		return lvl;
+	}
+
+	private static Level GetLevelDemo2() {
+		Room[] rooms= {
+				new Room(250, 250, Color.cyan),
+				new Room(250, 250, Color.YELLOW),
+				new Room(250, 250, Color.green),
+				new Room(250, 250, Color.pink),
+				new Room(250, 250, Color.blue)
+		};
+
+		maze(rooms);
+
+		Level lvl = new Level();
+
+		lvl.place(rooms[0], 632, 0);
+		lvl.place(rooms[1], 456, 55);
+		lvl.place(rooms[2], 171, 200);
+		lvl.place(rooms[3], 358, 0);
+		lvl.place(rooms[4], 746, 100);
+
+		lvl.firstLocation(rooms[0]);
+
+		return lvl;
 	}
 
 }

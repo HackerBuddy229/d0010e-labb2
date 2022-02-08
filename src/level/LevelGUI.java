@@ -1,8 +1,6 @@
 
 package lab2.level;
 
-import lab2.Direction;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -33,7 +31,7 @@ public class LevelGUI implements Observer {
 		
 		// TODO: You should change 200 to a value 
 		// depending on the size of the level
-		d = new Display(lv,500,500);
+		d = new Display(lv,1000,1000);
 		
 		frame.getContentPane().add(d);
 		frame.pack();
@@ -73,7 +71,12 @@ public class LevelGUI implements Observer {
 
 			//Create background
 			g.setColor(Color.gray);
-			g.fillRect(0, 0, 500, 500);
+			g.fillRect(0, 0, 1000, 1000);
+
+			Room cRoom = lvl.currentRoom;
+
+			g.setColor(Color.red);
+			g.drawRect(cRoom.x, cRoom.y, cRoom.dx, cRoom.dy);
 
 			//for: create rooms
 			for (Room r:this.lvl.rooms) {
@@ -83,14 +86,26 @@ public class LevelGUI implements Observer {
 
 			//for: create connections for current room
 
-			g.setColor(Color.GREEN);
+			g.setColor(Color.WHITE);
 
-			Room cRoom = lvl.currentRoom;
 			for (int i = 0; i < 4; i++) {
 				try {
-					if (cRoom.connections[i] != null) {
+					if (cRoom.connections[i] != null && lvl.rooms.contains(cRoom.connections[i])) {
 						Room r = cRoom.connections[i];
-						g.drawLine(cRoom.x, cRoom.y, r.x, r.y);
+						switch (i) {
+							case 0:
+								g.drawLine(cRoom.x + cRoom.dx/2, cRoom.y, r.x+r.dx/2, r.y+r.dy/2);
+								break;
+							case 1:
+								g.drawLine(cRoom.x + cRoom.dx, cRoom.y + cRoom.dy/2, r.x+r.dx/2, r.y+r.dy/2);
+								break;
+							case 2:
+								g.drawLine(cRoom.x + cRoom.dx/2, cRoom.y + cRoom.dy, r.x+r.dx/2, r.y+r.dy/2);
+								break;
+							case 3:
+								g.drawLine(cRoom.x, cRoom.y + cRoom.dy/2, r.x+r.dx/2, r.y+r.dy/2);
+								break;
+						}
 						//TODO: debug
 						System.out.println("DREW A FUCKING LINE MATE!!!");
 					}
