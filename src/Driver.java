@@ -27,7 +27,7 @@ public class Driver {
 	 *
 	 * @param rooms
 	 */
-	private static void maze(Room[] rooms) {
+	private static void mazelvl1(Room[] rooms) {
 		rooms[0].connectSouthTo(rooms[1]);
 		rooms[1].connectNorthTo(rooms[0]);
 		rooms[1].connectSouthTo(rooms[2]);
@@ -37,7 +37,16 @@ public class Driver {
 		rooms[3].connectSouthTo(rooms[4]);
 		rooms[4].connectNorthTo(rooms[3]);
 	}
-
+	private static void mazelvl2(Room[] rooms) {
+		rooms[0].connectSouthTo(rooms[1]);
+		rooms[1].connectNorthTo(rooms[0]);
+		rooms[1].connectSouthTo(rooms[2]);
+		rooms[2].connectNorthTo(rooms[1]);
+		rooms[2].connectSouthTo(rooms[3]);
+		rooms[3].connectNorthTo(rooms[2]);
+		rooms[3].connectSouthTo(rooms[4]);
+		rooms[4].connectNorthTo(rooms[3]);
+	}
 	private static Level GetLevelDemo1() {
 		Room[] rooms = {
 				new Room(125, 125, Color.cyan),
@@ -47,7 +56,7 @@ public class Driver {
 				new Room(250, 250, Color.blue)
 		};
 
-		maze(rooms);
+		mazelvl1(rooms);
 
 		Level lvl = new Level();
 
@@ -71,7 +80,7 @@ public class Driver {
 				new Room(250, 250, Color.blue)
 		};
 
-		maze(rooms);
+		mazelvl2(rooms);
 
 		Level lvl = new Level();
 

@@ -8,7 +8,7 @@ import java.util.Observable;
 
 public class Level extends Observable {
 
-	protected List<Room> rooms = null;
+	protected List<Room> rooms;
 
 	protected Room firstRoom = null;
 	protected Room currentRoom = null;
@@ -34,7 +34,7 @@ public class Level extends Observable {
 	 * adds a new room to the level maze if it does not overlap other rooms
 	 * @param r the new room
 	 * @param x the rooms x coordinate
-	 * @param y the rooms y coordunate
+	 * @param y the rooms y coordinate
 	 * @return weather or not the room could be placed
 	 */
 	public boolean place(Room r, int x, int y)  {

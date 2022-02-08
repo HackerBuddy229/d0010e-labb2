@@ -34,7 +34,7 @@ public class Room extends Rectangle {
 
 	/**
 	 *
-	 * @param r
+	 * @param r Room that connection goes to
 	 */
 	public void connectNorthTo(Room r) {
 		connections[0] = r;
