@@ -1,6 +1,7 @@
 
 package lab2.level;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -57,7 +58,7 @@ public class Level extends Observable {
 
 		//iterates the existing rooms to check for overlap
 		for (Room room: this.rooms)
-			if (room.intersects(r)) //checks for intersects
+			if (isIntersecting(r, room)) //checks for intersects
 				return false;
 
 
@@ -70,6 +71,30 @@ public class Level extends Observable {
 	}
 
 
+	private boolean isIntersecting(Room newRoom, Room compRoom) {
+		int newRoomW = newRoom.width;
+		int newRoomH = newRoom.height;
+		int compRoomW = compRoom.width;
+		int compRoomH = compRoom.height;
+
+		int newRoomX = newRoom.x;
+		int newRoomY = newRoom.y;
+		int compRoomX = compRoom.x;
+		int compRoomY = compRoom.y;
+
+		compRoomW += compRoomX;
+		compRoomH += compRoomY;
+		newRoomW += newRoomX;
+		newRoomH += newRoomY;
+
+		//
+		boolean one = (compRoomW < compRoomX || compRoomW > newRoomX);
+		boolean two = (compRoomH < compRoomY || compRoomH > newRoomY);
+		boolean tre = (newRoomW < newRoomX || newRoomW > compRoomX);
+		boolean four = (newRoomH < newRoomY || newRoomH > compRoomY);
+		boolean answer = one && two && tre && four;
+		return answer;
+	}
 	/**
 	 * changes the current room prop in the specified direction
 	 * if a connection exists for that direction in the current room

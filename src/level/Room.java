@@ -4,7 +4,7 @@ package lab2.level;
 import java.awt.*;
 
 
-public class Room extends Rectangle {
+public class Room {
 	/**
 	 * North = 0
 	 * East = 1
@@ -15,7 +15,10 @@ public class Room extends Rectangle {
 
 	protected int dx;
 	protected int dy;
-
+	protected int x;
+	protected int y;
+	protected int width;
+	protected int height;
 
 	protected Color color;
 	
@@ -23,7 +26,7 @@ public class Room extends Rectangle {
 		this.dx = dx;
 		this.dy = dy;
 
-		this.width = dx;
+		this.width  = dx;
 		this.height = dy;
 
 		this.color = color;

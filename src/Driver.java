@@ -13,12 +13,33 @@ public class Driver {
 	 */
 	public void run() {
 
+		Room r1 = new Room(200,100,Color.BLUE);
+		Room r2 = new Room(100,60,Color.RED);
+		Room r3 = new Room(70,30,Color.GREEN);
+		Room r4 = new Room(170,60,Color.yellow);
+		Room r5 = new Room(100,100,Color.white);
+		Room r6 = new Room(40,200,Color.gray);
+		Room r7 = new Room(270,160,Color.pink);
+		Room r8 = new Room(120,70,Color.magenta);
+		Room r9 = new Room(110,120,Color.orange);
+		Level testLevel = new Level();
+		testLevel.place(r1,50,40);
+		testLevel.place(r2,30,25);
+		testLevel.place(r3,210,20);
+		testLevel.place(r4,230,100);
+		testLevel.place(r5,20,80);
+		testLevel.place(r6,90,10);
+		testLevel.place(r7,20,20);
+		testLevel.place(r8,80,50);
+		testLevel.place(r9,130,100);
 
+		testLevel.firstLocation(r1);
+		LevelGUI lvlGUI = new LevelGUI(testLevel, "overlap test");
 
-		Level lvl = GetLevelDemo1();
+		//Level lvl = GetLevelDemo1();
 		//Level lvl = GetLevelDemo2();
 
-		LevelGUI gui = new LevelGUI(lvl, "First!!!");
+		//LevelGUI gui = new LevelGUI(lvl, "First!!!");
 
 
 	}
