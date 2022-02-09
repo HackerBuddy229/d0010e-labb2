@@ -30,7 +30,6 @@ public class LevelGUI implements Observer {
 		JFrame frame = new JFrame(name);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		// TODO: You should change 200 to a value 
 		// depending on the size of the level
 		d = new Display(lv,1000,1000);
 		
@@ -87,8 +86,12 @@ public class LevelGUI implements Observer {
 
 			//for: create connections for current room
 
-			g.setColor(Color.WHITE);
+			g.setColor(Color.ORANGE); // Sets line color
 
+			drawConnections(g, cRoom);
+		}
+
+		private void drawConnections(Graphics g, Room cRoom) {
 			for (int i = 0; i < 4; i++) {
 				try {
 					if (cRoom.connections[i] != null && lvl.rooms.contains(cRoom.connections[i])) {
@@ -115,9 +118,9 @@ public class LevelGUI implements Observer {
 				}
 			}
 		}
-		
 
-	 	private class Listener implements KeyListener {
+
+		private class Listener implements KeyListener {
 
 
 			private final Level lvl;

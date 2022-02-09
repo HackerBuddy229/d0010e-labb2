@@ -27,7 +27,17 @@ public class Driver {
 	 *
 	 * @param rooms
 	 */
-	private static void maze(Room[] rooms) {
+	private static void mazelvl1(Room[] rooms) {
+		rooms[0].connectSouthTo(rooms[1]);
+		rooms[1].connectNorthTo(rooms[0]);
+		rooms[1].connectEastTo(rooms[2]);
+		rooms[1].connectWestTo(rooms[3]);
+		rooms[2].connectWestTo(rooms[1]);
+		rooms[2].connectSouthTo(rooms[4]);
+		rooms[3].connectEastTo(rooms[1]);
+		rooms[4].connectNorthTo(rooms[2]);
+	}
+	private static void mazelvl2(Room[] rooms) {
 		rooms[0].connectSouthTo(rooms[1]);
 		rooms[1].connectNorthTo(rooms[0]);
 		rooms[1].connectSouthTo(rooms[2]);
@@ -37,7 +47,6 @@ public class Driver {
 		rooms[3].connectSouthTo(rooms[4]);
 		rooms[4].connectNorthTo(rooms[3]);
 	}
-
 	private static Level GetLevelDemo1() {
 		Room[] rooms = {
 				new Room(125, 125, Color.cyan),
@@ -47,14 +56,14 @@ public class Driver {
 				new Room(250, 250, Color.blue)
 		};
 
-		maze(rooms);
+		mazelvl1(rooms);
 
 		Level lvl = new Level();
 
-		lvl.place(rooms[0], 0, 0);
+		lvl.place(rooms[0], 20, 20);
 		lvl.place(rooms[1], 360, 200);
 		lvl.place(rooms[2], 600, 200);
-		lvl.place(rooms[3], 50, 50);
+		lvl.place(rooms[3], 50, 50); // Pink: intersects with cyan and yellow
 		lvl.place(rooms[4], 400, 600);
 
 		lvl.firstLocation(rooms[0]);
@@ -71,7 +80,7 @@ public class Driver {
 				new Room(250, 250, Color.blue)
 		};
 
-		maze(rooms);
+		mazelvl2(rooms);
 
 		Level lvl = new Level();
 
