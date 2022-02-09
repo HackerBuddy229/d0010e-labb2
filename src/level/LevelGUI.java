@@ -24,6 +24,7 @@ public class LevelGUI implements Observer {
 	public LevelGUI(Level level, String name) {
 		
 		this.lv = level;
+		this.lv.begin();
 		this.lv.addObserver(this);
 		
 		JFrame frame = new JFrame(name);

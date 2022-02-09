@@ -13,6 +13,8 @@ public class Level extends Observable {
 	protected Room firstRoom = null;
 	protected Room currentRoom = null;
 
+	private boolean hasBegun = false;
+
 	public Level() {
 		this.rooms = new ArrayList<Room>();
 	}
@@ -29,6 +31,13 @@ public class Level extends Observable {
 		notifyObservers(currentRoom);
 	}
 
+	/**
+	 * sets the has begun prop to true
+	 */
+	protected void begin() {
+		hasBegun = true;
+	}
+
 
 	/**
 	 * adds a new room to the level maze if it does not overlap other rooms
@@ -38,6 +47,10 @@ public class Level extends Observable {
 	 * @return weather or not the room could be placed
 	 */
 	public boolean place(Room r, int x, int y)  {
+		//check if game has started
+		if (hasBegun)
+			return false;
+
 		//assigns coordinate props
 		r.x = x;
 		r.y = y;
