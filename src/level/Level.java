@@ -115,6 +115,7 @@ public class Level extends Observable {
 			if (rooms.contains(r) && this.firstRoom == null) {
 				this.firstRoom = r;
 				this.currentRoom = r;
+				this.begin();
 			}
 
 	}
